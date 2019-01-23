@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Todos from './Todo'
-
+import Todos from './Todo';
+import AddTodo from './AddTodo'
 class App extends Component {
   state={
     todos:[
@@ -17,12 +17,21 @@ class App extends Component {
       todos
     })
   }
+  //Make a hooker function that hooks and gets a entiire to do item 
+  addTodo = (todo) => {
+    todo.id = Math.random();
+    let todos = [...this.state.todos , todo];
+    this.setState({
+      todos
+    });
+  }
   
   render(){
     return(
       <div className="todo-app container">
         <h1 className="center blue-text">Todo's</h1>
         <Todos todos={this.state.todos} todoDelete={this.todoDelete}/>
+        <AddTodo addTodo={this.addTodo}/>
       </div>
     );
   };
